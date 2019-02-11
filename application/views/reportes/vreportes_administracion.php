@@ -20,7 +20,8 @@
               <h3 class="box-title"></h3>
               <?php date_default_timezone_set('America/Bogota'); ?>
               <h3 class="box-title">Reporte de Cuota de Administración Vehículos: <?php echo date("d-m-Y", strtotime($desde)); ?> hasta: <?php echo date("d-m-Y", strtotime($hasta)); ?> </h3>
-              <?php echo anchor('creportes/impr_rep_admin/'.$desde.'/'. $hasta.'/'.$ruta.'', 'Imprimir', array('class' => 'btn btn-primary btn-xm pull-right','title'=>'Imprimir Reporte')); ?>
+              <?php echo anchor('creportes/impr_rep_admin_grande/'.$desde.'/'. $hasta.'/'.$ruta.'', 'Imprimir Grande', array('class' => 'btn btn-primary btn-xm pull-right','title'=>'Imprimir Reporte Grande')); ?>
+              <?php echo anchor('creportes/impr_rep_admin_tirilla/'.$desde.'/'. $hasta.'/'.$ruta.'', 'Imprimir Tirilla', array('class' => 'btn btn-primary btn-xm pull-right','style' => 'margin-right:10px','title'=>'Imprimir Reporte Tirilla')); ?>
             </div>
             <div class="box-body">
              <div class="table-responsive">

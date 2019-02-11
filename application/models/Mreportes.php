@@ -49,6 +49,21 @@ class Mreportes extends CI_Model {
             return $query = $this->db->get()->result_array();
         }
 
+        public function administracion_tirilla_report($desde, $hasta, $ruta)
+        {
+            $this->db->select('lt_rutas.nom_ruta, SUM(lt_cuota_administracion.valor_admin) as total_admin, SUM(lt_cuota_administracion.pasajeros) as total_pasajeros');
+    		$this->db->from('lt_cuota_administracion');
+    		$this->db->join('lt_vehiculos','lt_vehiculos.numero_vehiculo = lt_cuota_administracion.numero_vehiculo');
+            $this->db->join('lt_rutas','lt_rutas.id_ruta = lt_cuota_administracion.id_ruta');
+    		$this->db->where('fecha_venta >=', $desde);
+            $this->db->where('fecha_venta <=', $hasta);
+            if($ruta != "null"){
+                $this->db->where('lt_cuota_administracion.id_ruta =', $ruta);
+            }
+            $this->db->group_by('lt_rutas.nom_ruta');
+            return $query = $this->db->get()->result_array();
+        }
+
         public function cuota_delete($id)
         {
             if ( ! $this->db->delete('lt_cuota_administracion', array('id_cadmin' => $id)))

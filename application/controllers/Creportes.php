@@ -93,7 +93,7 @@ class Creportes extends CI_Controller {
         $this->load->view('templates/footer');
     }
 
-    public function impr_rep_admin($desde, $hasta, $ruta)
+    public function impr_rep_admin_grande($desde, $hasta, $ruta)
     {
         $data['desde'] = $desde;
         $data['hasta'] = $hasta;
@@ -108,7 +108,23 @@ class Creportes extends CI_Controller {
 
         $this->load->view('templates/header',$data);
         $this->load->view('templates/menu');
-        $this->load->view('reportes/vprint_administracion',$data);
+        $this->load->view('reportes/vprint_administracion_grande',$data);
+        $this->load->view('templates/footer');
+    }
+
+    public function impr_rep_admin_tirilla($desde, $hasta, $ruta)
+    {
+        $data['desde'] = $desde;
+        $data['hasta'] = $hasta;
+        $data['ruta'] = $ruta;
+
+        $data['results'] = $this->mreportes->administracion_tirilla_report($data['desde'], $data['hasta'], $data['ruta']);
+
+        $data['title'] = "Reporte de Despacho Vehiculos";
+
+        $this->load->view('templates/header',$data);
+        $this->load->view('templates/menu');
+        $this->load->view('reportes/vprint_administracion_tirilla',$data);
         $this->load->view('templates/footer');
     }
 
